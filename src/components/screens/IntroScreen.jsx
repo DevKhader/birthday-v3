@@ -2,6 +2,7 @@
 
 import GradientButton from "../GradientButton"
 import { Gift } from "lucide-react"
+import { playMusic } from "../BackgroundMusic"   // ✅ added import
 
 export default function IntroScreen({ onNext }) {
     return (
@@ -14,18 +15,24 @@ export default function IntroScreen({ onNext }) {
                 />
 
                 <div>
-                    <h1 className="text-pretty text-4xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-violet-400 via-fuchsia-400 to-pink-400 drop-shadow leading-tight"
+                    <h1
+                        className="text-pretty text-4xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-violet-400 via-fuchsia-400 to-pink-400 drop-shadow leading-tight"
                         style={{
                             filter: "drop-shadow(0 0 20px rgba(255,105,180,0.4))",
                         }}>
                         A Cutiepie was born today, 20 years ago!
                     </h1>
-                    <p className="mt-4 text-xl text-pink-200">Yes, it’s YOU! A little surprise awaits...</p>
+                    <p className="mt-4 text-xl text-pink-200">
+                        Yes, it’s YOU! A little surprise awaits...
+                    </p>
                 </div>
 
                 <div className="mt-8">
                     <GradientButton
-                        onClick={() => { onNext?.() }}
+                        onClick={() => {
+                            playMusic();   // ✅ start music on click
+                            onNext?.();    // ✅ go to next screen
+                        }}
                     >
                         <Gift size={20} />
                         Start the surprise
