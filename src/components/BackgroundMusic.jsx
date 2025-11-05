@@ -1,20 +1,24 @@
 "use client";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
+
+let playMusicFn = null;
+
+export function playMusic() {
+  if (playMusicFn) playMusicFn();
+}
 
 export default function BackgroundMusic() {
   const audioRef = useRef(null);
 
-  useEffect(() => {
+  playMusicFn = () => {
     const audio = audioRef.current;
     if (audio) {
-      audio.volume = 0.4; // adjust volume here
+      audio.volume = 0.4;
       audio.play().catch(() => {
-        console.log("Autoplay blocked, waiting for user interaction.");
+        console.log("Music play blocked, waiting for user interaction");
       });
     }
-  }, []);
+  };
 
-  return (
-    <audio ref={audioRef} src="/audio/happy-birthday.mp3" loop />
-  );
+  return <audio ref={audioRef} src="/audio/happy-birthday.mp3" loop />;
 }
