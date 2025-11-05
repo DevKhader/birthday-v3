@@ -1,5 +1,6 @@
 import { Kalam } from "next/font/google";
 import "./globals.css";
+import BackgroundMusic from "@/components/BackgroundMusic";
 
 const kalam = Kalam({
   subsets: ["latin"],
@@ -17,6 +18,7 @@ export default function RootLayout({ children }) {
       <body
         className={`${kalam.className} antialiased bg-black select-none`}
       >
+        <BackgroundMusic />
         {children}
       </body>
     </html>
